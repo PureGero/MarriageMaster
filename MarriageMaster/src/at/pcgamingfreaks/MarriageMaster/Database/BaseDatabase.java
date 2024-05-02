@@ -267,13 +267,13 @@ public abstract class BaseDatabase<MARRIAGE_MASTER extends MarriageMasterPlugin,
 	public void updatePriestStatus(final MARRIAGE_PLAYER_DATA player)
 	{
 		backend.updatePriestStatus(player, callbackUpdatePriest);
-		if(bungee && communicatorBase != null) communicatorBase.updatePriestStatus(player);
+		if(communicatorBase != null) communicatorBase.updatePriestStatus(player);
 	}
 
 	protected void updateSurname(final MARRIAGE_DATA marriage)
 	{
 		backend.updateSurname(marriage, callbackUpdateSurname);
-		if(bungee && communicatorBase != null) communicatorBase.updateSurname(marriage);
+		if(communicatorBase != null) communicatorBase.updateSurname(marriage);
 	}
 
 	protected void marry(final MARRIAGE_DATA marriage)
@@ -284,7 +284,7 @@ public abstract class BaseDatabase<MARRIAGE_MASTER extends MarriageMasterPlugin,
 	protected void divorce(final MARRIAGE_DATA marriage)
 	{
 		backend.divorce(marriage);
-		if(bungee && communicatorBase != null) communicatorBase.divorce(marriage);
+		if(communicatorBase != null) communicatorBase.divorce(marriage);
 	}
 
 	public void resync()

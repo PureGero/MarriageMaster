@@ -186,7 +186,6 @@ public class MarriageMaster extends JavaPlugin implements MarriageMasterPlugin, 
 			new NoDatabaseWorker(this); // Starts the worker that informs everyone with reload permission that the database connection failed.
 			return true;
 		}
-		getLogger().info("useBungee=" + database.useBungee() + ", isMultiPaper=" + MultiLib.isMultiPaper());
 		if(database.useBungee())
 		{
 			pluginChannelCommunicator = new PluginChannelCommunicator(this);

@@ -550,7 +550,7 @@ public abstract class SQL<MARRIAGE_PLAYER extends MarriagePlayerDataBase, MARRIA
 		Home home = marriage.getHome();
 		if (home == null)
 		{
-			runStatementAsyncIncludeKey(queryDelHome, marriage);
+			runStatementAsyncIncludeKey((updateCallback != null) ? () -> updateCallback.accept(marriage) : null, queryDelHome, marriage);
 		}
 		else if(useBungee)
 		{
@@ -559,7 +559,7 @@ public abstract class SQL<MARRIAGE_PLAYER extends MarriagePlayerDataBase, MARRIA
 		}
 		else
 		{
-			runStatementAsyncIncludeKeyFirst(queryUpdateHome, marriage, home.getX(), home.getY(), home.getZ(), home.getYaw(), home.getPitch(), home.getWorldName());
+			runStatementAsyncIncludeKeyFirst((updateCallback != null) ? () -> updateCallback.accept(marriage) : null, queryUpdateHome, marriage, home.getX(), home.getY(), home.getZ(), home.getYaw(), home.getPitch(), home.getWorldName());
 		}
 	}
 
