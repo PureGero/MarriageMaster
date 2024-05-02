@@ -62,6 +62,9 @@ public class ExternalAcceptRequest extends AcceptPendingRequest
 			String destinationServer = parts[1];
 			Action action = Action.valueOf(parts[2]);
 			UUID extraPlayerUuid = UUID.fromString(parts[3]);
+
+			if (!requests.containsKey(requestUUID)) return;
+
 			AcceptPendingRequest request = requests.get(requestUUID).get();
 
 			if (!MultiLib.getLocalServerName().equals(destinationServer)) return;
