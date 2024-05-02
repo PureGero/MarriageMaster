@@ -192,7 +192,7 @@ public abstract class PluginChannelCommunicatorBase
 
 	public void updateMarriageColor(MarriageDataBase marriage)
 	{
-		if(marriage.getDatabaseKey() != null) sendMessage("updateMarriageColor", marriage.getDatabaseKey().toString(), "" + marriage.getColor());
+		if(marriage.getDatabaseKey() != null) sendMessage("updateMarriageColor", marriage.getDatabaseKey().toString(), "" + marriage.getColor().getName());
 	}
 
 	public void updateSurname(MarriageDataBase marriage)
