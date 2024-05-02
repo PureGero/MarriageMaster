@@ -38,6 +38,7 @@ import at.pcgamingfreaks.MarriageMaster.Bukkit.Management.MarriageManagerImpl;
 import at.pcgamingfreaks.MarriageMaster.Bukkit.Placeholder.PlaceholderManager;
 import at.pcgamingfreaks.MarriageMaster.Bukkit.SpecialInfoWorker.NoDatabaseWorker;
 import at.pcgamingfreaks.MarriageMaster.Database.MarriagePlayerDataBase;
+import at.pcgamingfreaks.MarriageMaster.Database.PluginChannelCommunicatorBase;
 import at.pcgamingfreaks.MarriageMaster.MagicValues;
 import at.pcgamingfreaks.MarriageMaster.Permissions;
 import at.pcgamingfreaks.Plugin.IPlugin;
@@ -46,6 +47,7 @@ import at.pcgamingfreaks.UUIDConverter;
 import at.pcgamingfreaks.Util.StringUtils;
 import at.pcgamingfreaks.Version;
 
+import com.github.puregero.multilib.MultiLib;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -74,7 +76,7 @@ public class MarriageMaster extends JavaPlugin implements MarriageMasterPlugin, 
 	@Getter private Language language = null;
 	@Getter private Database database = null;
 	@Getter private IBackpackIntegration backpacksIntegration = null;
-	@Getter private PluginChannelCommunicator pluginChannelCommunicator = null;
+	@Getter private PluginChannelCommunicatorBase pluginChannelCommunicator = null;
 	@Getter private PrefixSuffixFormatter prefixSuffixFormatter = null;
 	private CommandManagerImplementation commandManager = null;
 	private MarriageManagerImpl marriageManager = null;
@@ -186,6 +188,10 @@ public class MarriageMaster extends JavaPlugin implements MarriageMasterPlugin, 
 		if(database.useBungee())
 		{
 			pluginChannelCommunicator = new PluginChannelCommunicator(this);
+		}
+		else if(MultiLib.isMultiPaper())
+		{
+			pluginChannelCommunicator = new MultiLibCommunicator(this);
 		}
 
 		CommonMessages.loadCommonMessages(language);

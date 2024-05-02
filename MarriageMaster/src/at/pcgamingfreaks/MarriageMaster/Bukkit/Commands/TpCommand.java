@@ -25,6 +25,8 @@ import at.pcgamingfreaks.MarriageMaster.Bukkit.API.Events.TPEvent;
 import at.pcgamingfreaks.MarriageMaster.Bukkit.API.MarriagePlayer;
 import at.pcgamingfreaks.MarriageMaster.Bukkit.API.MarryCommand;
 import at.pcgamingfreaks.MarriageMaster.Bukkit.CommonMessages;
+import at.pcgamingfreaks.MarriageMaster.Bukkit.Listener.MultiLibCommunicator;
+import at.pcgamingfreaks.MarriageMaster.Bukkit.Listener.PluginChannelCommunicator;
 import at.pcgamingfreaks.MarriageMaster.Bukkit.MarriageMaster;
 import at.pcgamingfreaks.MarriageMaster.Permissions;
 import at.pcgamingfreaks.MarriageMaster.Placeholder.Placeholders;
@@ -93,9 +95,13 @@ public class TpCommand extends MarryCommand
 		messageRequestCanceledDisconnectTarget    = plugin.getLanguage().getMessage("Ingame.TP.Request.CanceledDisconnectTarget");
 		//endregion
 
-		if(plugin.getPluginChannelCommunicator() != null)
+		if(plugin.getPluginChannelCommunicator() instanceof PluginChannelCommunicator)
 		{
-			plugin.getPluginChannelCommunicator().setTpCommand(this);
+			((PluginChannelCommunicator) plugin.getPluginChannelCommunicator()).setTpCommand(this);
+		}
+		else if(plugin.getPluginChannelCommunicator() instanceof MultiLibCommunicator)
+		{
+			((MultiLibCommunicator) plugin.getPluginChannelCommunicator()).setTpCommand(this);
 		}
 	}
 

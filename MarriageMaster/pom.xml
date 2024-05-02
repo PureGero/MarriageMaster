@@ -36,6 +36,10 @@
 			<id>CodeMC</id>
 			<url>https://repo.codemc.org/repository/maven-public/</url>
 		</repository>
+		<repository>
+			<id>clojars</id>
+			<url>https://repo.clojars.org</url>
+		</repository>
 	</repositories>
 
 	<pluginRepositories>
@@ -164,6 +168,12 @@
 		</dependency>
 		<!-- endregion -->
 		<!-- endregion -->
+		<dependency>
+			<groupId>com.github.puregero</groupId>
+			<artifactId>multilib</artifactId>
+			<version>1.1.13</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -318,6 +328,10 @@
 												<include>at.pcgamingfreaks.MarriageMaster.Bukkit.API.MarryCommand</include>
 												<include>at.pcgamingfreaks.MarriageMaster.Bungee.API.MarryCommand</include>
 											</includes>
+										</relocation>
+										<relocation>
+											<pattern>com.github.puregero.multilib</pattern>
+											<shadedPattern>at.pcgamingfreaks.MarriageMasterStandalone.multilib</shadedPattern>
 										</relocation>
 									</relocations>
 									<filters>
