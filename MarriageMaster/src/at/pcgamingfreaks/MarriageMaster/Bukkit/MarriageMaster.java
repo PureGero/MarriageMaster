@@ -35,6 +35,7 @@ import at.pcgamingfreaks.MarriageMaster.Bukkit.Formatter.PrefixSuffixFormatterIm
 import at.pcgamingfreaks.MarriageMaster.Bukkit.Listener.BonusXP.*;
 import at.pcgamingfreaks.MarriageMaster.Bukkit.Listener.*;
 import at.pcgamingfreaks.MarriageMaster.Bukkit.Management.MarriageManagerImpl;
+import at.pcgamingfreaks.MarriageMaster.Bukkit.Management.Requests.ExternalAcceptRequest;
 import at.pcgamingfreaks.MarriageMaster.Bukkit.Placeholder.PlaceholderManager;
 import at.pcgamingfreaks.MarriageMaster.Bukkit.SpecialInfoWorker.NoDatabaseWorker;
 import at.pcgamingfreaks.MarriageMaster.Database.MarriagePlayerDataBase;
@@ -185,6 +186,7 @@ public class MarriageMaster extends JavaPlugin implements MarriageMasterPlugin, 
 			new NoDatabaseWorker(this); // Starts the worker that informs everyone with reload permission that the database connection failed.
 			return true;
 		}
+		getLogger().info("useBungee=" + database.useBungee() + ", isMultiPaper=" + MultiLib.isMultiPaper());
 		if(database.useBungee())
 		{
 			pluginChannelCommunicator = new PluginChannelCommunicator(this);
@@ -193,6 +195,8 @@ public class MarriageMaster extends JavaPlugin implements MarriageMasterPlugin, 
 		{
 			pluginChannelCommunicator = new MultiLibCommunicator(this);
 		}
+
+		ExternalAcceptRequest.init(this);
 
 		CommonMessages.loadCommonMessages(language);
 

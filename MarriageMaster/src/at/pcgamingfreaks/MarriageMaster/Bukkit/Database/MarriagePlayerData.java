@@ -24,6 +24,7 @@ import at.pcgamingfreaks.MarriageMaster.Bukkit.API.Marriage;
 import at.pcgamingfreaks.MarriageMaster.Bukkit.API.MarriagePlayer;
 import at.pcgamingfreaks.MarriageMaster.Bukkit.Commands.HugCommand;
 import at.pcgamingfreaks.MarriageMaster.Bukkit.Commands.KissCommand;
+import at.pcgamingfreaks.MarriageMaster.Bukkit.Management.Requests.ExternalAcceptRequest;
 import at.pcgamingfreaks.MarriageMaster.Bukkit.MarriageMaster;
 import at.pcgamingfreaks.MarriageMaster.Database.MarriagePlayerDataBase;
 import at.pcgamingfreaks.Message.MessageComponent;
@@ -83,6 +84,7 @@ public class MarriagePlayerData extends MarriagePlayerDataBase<MarriagePlayer, C
 			openRequest = null;
 		}
 		getRequestsToCancel().removeIf(acceptPendingRequest -> acceptPendingRequest.equals(request));
+		ExternalAcceptRequest.closeRequest(request);
 	}
 
 	@Override
